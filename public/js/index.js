@@ -32,25 +32,27 @@ class Index extends React.Component {
             chemicumDisplay = "block";
         }
         return (
-            <div class="container" >
-                <div style={{ position: "fixed", bottom: "0px", right: "0px" }} >
+            <div >
+                <div class="container">
+                    <div class="row text-center" >
+                        <div class="col-md-12 col-xs-12" style={{ display: "block" }} >
+                            <div style={{ display: exactumDisplay }} >
+                                <h1>Exactum</h1>
+                                <hr />
+                                <Menu restaurant={exactumURL} />
+                            </div>
+                            <div style={{ display: chemicumDisplay }} >
+                                <h1>Chemicum</h1>
+                                <hr />
+                                <Menu restaurant={chemicumURL} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style={{ position: "fixed", bottom: "10px", right: "10px" }} >
                     <button class="btn btn-primary" onClick={this.changeMenu} style={{}} >
                         change restaurant
                     </button>
-                </div>
-                <div class="row text-center" >
-                    <div class="col-md-12 col-xs-12" style={{ display: "block" }} >
-                        <div style={{ display: exactumDisplay }} >
-                            <h1>Exactum</h1>
-                            <hr />
-                            <Menu restaurant={exactumURL} />
-                        </div>
-                        <div style={{ display: chemicumDisplay }} >
-                            <h1>Chemicum</h1>
-                            <hr />
-                            <Menu restaurant={chemicumURL} />
-                        </div>
-                    </div>
                 </div>
             </div>
         );

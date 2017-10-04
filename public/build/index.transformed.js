@@ -990,44 +990,48 @@ class Index extends React.Component {
         }
         return React.createElement(
             "div",
-            { "class": "container" },
+            null,
             React.createElement(
                 "div",
-                { style: { position: "fixed", bottom: "0px", right: "0px" } },
+                { "class": "container" },
                 React.createElement(
-                    "button",
-                    { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
-                    "change restaurant"
+                    "div",
+                    { "class": "row text-center" },
+                    React.createElement(
+                        "div",
+                        { "class": "col-md-12 col-xs-12", style: { display: "block" } },
+                        React.createElement(
+                            "div",
+                            { style: { display: exactumDisplay } },
+                            React.createElement(
+                                "h1",
+                                null,
+                                "Exactum"
+                            ),
+                            React.createElement("hr", null),
+                            React.createElement(Menu, { restaurant: exactumURL })
+                        ),
+                        React.createElement(
+                            "div",
+                            { style: { display: chemicumDisplay } },
+                            React.createElement(
+                                "h1",
+                                null,
+                                "Chemicum"
+                            ),
+                            React.createElement("hr", null),
+                            React.createElement(Menu, { restaurant: chemicumURL })
+                        )
+                    )
                 )
             ),
             React.createElement(
                 "div",
-                { "class": "row text-center" },
+                { style: { position: "fixed", bottom: "10px", right: "10px" } },
                 React.createElement(
-                    "div",
-                    { "class": "col-md-12 col-xs-12", style: { display: "block" } },
-                    React.createElement(
-                        "div",
-                        { style: { display: exactumDisplay } },
-                        React.createElement(
-                            "h1",
-                            null,
-                            "Exactum"
-                        ),
-                        React.createElement("hr", null),
-                        React.createElement(Menu, { restaurant: exactumURL })
-                    ),
-                    React.createElement(
-                        "div",
-                        { style: { display: chemicumDisplay } },
-                        React.createElement(
-                            "h1",
-                            null,
-                            "Chemicum"
-                        ),
-                        React.createElement("hr", null),
-                        React.createElement(Menu, { restaurant: chemicumURL })
-                    )
+                    "button",
+                    { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
+                    "change restaurant"
                 )
             )
         );
