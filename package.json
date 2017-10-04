@@ -1,0 +1,34 @@
+{
+  "name": "kumpula-cafe",
+  "version": "1.0.0",
+  "description": "A website, which shows the daily/weekly menu of Kumpula's two unicafes, Exactum and Chemicum. Created with node and react.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woltsu/kumpula-cafe.git"
+  },
+  "author": "Olli Warro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woltsu/kumpula-cafe/issues"
+  },
+  "homepage": "https://github.com/woltsu/kumpula-cafe#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
