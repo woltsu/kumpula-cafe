@@ -963,32 +963,71 @@ var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
 var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
 
 class Index extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showExactum: true
+        };
+        this.changeMenu = this.changeMenu.bind(this);
+    }
+
+    changeMenu() {
+        var newState = !this.state.showExactum;
+        this.setState({
+            showExactum: newState
+        });
+    }
+
     render() {
+        let exactumDisplay;
+        let chemicumDisplay;
+        if (this.state.showExactum) {
+            exactumDisplay = "block";
+            chemicumDisplay = "none";
+        } else {
+            exactumDisplay = "none";
+            chemicumDisplay = "block";
+        }
         return React.createElement(
             "div",
             { "class": "container" },
             React.createElement(
                 "div",
-                { "class": "row" },
+                { "class": "row text-center" },
                 React.createElement(
                     "div",
-                    { "class": "col" },
+                    { "class": "col-md-12 col-xs-12" },
                     React.createElement(
-                        "h1",
-                        null,
-                        "Exactum"
-                    ),
-                    React.createElement(Menu, { restaurant: exactumURL })
+                        "button",
+                        { "class": "btn btn-primary", onClick: this.changeMenu, style: { marginTop: "2%", marginBottom: "2%" } },
+                        "change restaurant"
+                    )
                 ),
                 React.createElement(
                     "div",
-                    { "class": "col" },
+                    { "class": "col-md-12 col-xs-12", style: { display: "block" } },
                     React.createElement(
-                        "h1",
-                        null,
-                        "Chemicum"
+                        "div",
+                        { style: { display: exactumDisplay } },
+                        React.createElement(
+                            "h1",
+                            null,
+                            "Exactum"
+                        ),
+                        React.createElement("hr", null),
+                        React.createElement(Menu, { restaurant: exactumURL })
                     ),
-                    React.createElement(Menu, { restaurant: chemicumURL })
+                    React.createElement(
+                        "div",
+                        { style: { display: chemicumDisplay } },
+                        React.createElement(
+                            "h1",
+                            null,
+                            "Chemicum"
+                        ),
+                        React.createElement("hr", null),
+                        React.createElement(Menu, { restaurant: chemicumURL })
+                    )
                 )
             )
         );
@@ -21260,24 +21299,23 @@ class Menu extends React.Component {
                             "div",
                             null,
                             React.createElement(
-                                "p",
+                                "b",
                                 null,
                                 price,
                                 ":"
                             ),
-                            React.createElement(
-                                "ul",
-                                null,
-                                food[date][price].map(function (food, foodIndex) {
-                                    return React.createElement(
-                                        "li",
-                                        { key: foodIndex },
-                                        food
-                                    );
-                                })
-                            )
+                            food[date][price].map(function (food, foodIndex) {
+                                return React.createElement(
+                                    "p",
+                                    { key: foodIndex },
+                                    "- ",
+                                    food
+                                );
+                            }),
+                            React.createElement("br", null)
                         );
-                    })
+                    }),
+                    React.createElement("hr", null)
                 );
             })
         );

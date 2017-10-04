@@ -50,15 +50,15 @@ class Menu extends React.Component {
                             {Object.keys(food[date]).map(function (price, priceIndex) {
                                 return (
                                     <div>
-                                        <p>{price}:</p>
-                                        <ul>
-                                            {food[date][price].map(function (food, foodIndex) {
-                                                return <li key={ foodIndex }>{ food }</li>
-                                            })}
-                                        </ul>
+                                        <b>{price}:</b>
+                                        {food[date][price].map(function (food, foodIndex) {
+                                            return <p key={foodIndex}>- { food }</p>
+                                        })}
+                                        <br />
                                     </div>
                                 );
                             })}
+                            <hr />
                         </div>
                     );
                 })}
