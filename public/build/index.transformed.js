@@ -993,16 +993,16 @@ class Index extends React.Component {
             { "class": "container" },
             React.createElement(
                 "div",
-                { "class": "row text-center" },
+                { style: { position: "fixed", bottom: "0px", right: "0px" } },
                 React.createElement(
-                    "div",
-                    { "class": "col-md-12 col-xs-12" },
-                    React.createElement(
-                        "button",
-                        { "class": "btn btn-primary", onClick: this.changeMenu, style: { marginTop: "2%", marginBottom: "2%" } },
-                        "change restaurant"
-                    )
-                ),
+                    "button",
+                    { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
+                    "change restaurant"
+                )
+            ),
+            React.createElement(
+                "div",
+                { "class": "row text-center" },
                 React.createElement(
                     "div",
                     { "class": "col-md-12 col-xs-12", style: { display: "block" } },
