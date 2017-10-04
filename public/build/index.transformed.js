@@ -981,12 +981,15 @@ class Index extends React.Component {
     render() {
         let exactumDisplay;
         let chemicumDisplay;
+        let restaurant;
         if (this.state.showExactum) {
             exactumDisplay = "block";
             chemicumDisplay = "none";
+            restaurant = "Exactum";
         } else {
             exactumDisplay = "none";
             chemicumDisplay = "block";
+            restaurant = "Chemicum";
         }
         return React.createElement(
             "div",
@@ -1001,25 +1004,18 @@ class Index extends React.Component {
                         "div",
                         { "class": "col-md-12 col-xs-12", style: { display: "block" } },
                         React.createElement(
+                            "h1",
+                            null,
+                            restaurant
+                        ),
+                        React.createElement(
                             "div",
                             { style: { display: exactumDisplay } },
-                            React.createElement(
-                                "h1",
-                                null,
-                                "Exactum"
-                            ),
-                            React.createElement("hr", null),
                             React.createElement(Menu, { restaurant: exactumURL })
                         ),
                         React.createElement(
                             "div",
                             { style: { display: chemicumDisplay } },
-                            React.createElement(
-                                "h1",
-                                null,
-                                "Chemicum"
-                            ),
-                            React.createElement("hr", null),
                             React.createElement(Menu, { restaurant: chemicumURL })
                         )
                     )
@@ -1027,11 +1023,18 @@ class Index extends React.Component {
             ),
             React.createElement(
                 "div",
-                { style: { position: "fixed", bottom: "10px", right: "10px" } },
+                { style: { position: "fixed", bottom: "10px", right: "10px" }, "class": "text-center" },
                 React.createElement(
                     "button",
                     { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
                     "change restaurant"
+                ),
+                React.createElement("br", null),
+                React.createElement(
+                    "label",
+                    null,
+                    "Current: ",
+                    restaurant
                 )
             )
         );
@@ -21293,6 +21296,7 @@ class Menu extends React.Component {
                 return React.createElement(
                     "div",
                     null,
+                    React.createElement("hr", null),
                     React.createElement(
                         "h3",
                         null,
@@ -21318,8 +21322,7 @@ class Menu extends React.Component {
                             }),
                             React.createElement("br", null)
                         );
-                    }),
-                    React.createElement("hr", null)
+                    })
                 );
             })
         );

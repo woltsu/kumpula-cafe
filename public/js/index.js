@@ -24,35 +24,37 @@ class Index extends React.Component {
     render() {
         let exactumDisplay;
         let chemicumDisplay;
+        let restaurant;
         if (this.state.showExactum) {
             exactumDisplay = "block";
             chemicumDisplay = "none";
+            restaurant = "Exactum";
         } else {
             exactumDisplay = "none";
             chemicumDisplay = "block";
+            restaurant = "Chemicum";
         }
         return (
             <div >
                 <div class="container">
                     <div class="row text-center" >
                         <div class="col-md-12 col-xs-12" style={{ display: "block" }} >
+                            <h1>{restaurant}</h1>
                             <div style={{ display: exactumDisplay }} >
-                                <h1>Exactum</h1>
-                                <hr />
                                 <Menu restaurant={exactumURL} />
                             </div>
                             <div style={{ display: chemicumDisplay }} >
-                                <h1>Chemicum</h1>
-                                <hr />
                                 <Menu restaurant={chemicumURL} />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div style={{ position: "fixed", bottom: "10px", right: "10px" }} >
+                <div style={{ position: "fixed", bottom: "10px", right: "10px" }} class="text-center" >
                     <button class="btn btn-primary" onClick={this.changeMenu} style={{}} >
                         change restaurant
                     </button>
+                    <br />
+                    <label>Current: { restaurant }</label>
                 </div>
             </div>
         );

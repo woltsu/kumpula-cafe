@@ -46,6 +46,7 @@ class Menu extends React.Component {
                 {Object.keys(food).map(function (date, dateIndex) {
                     return (
                         <div>
+                            <hr />
                             <h3>{ date }</h3>
                             {Object.keys(food[date]).map(function (price, priceIndex) {
                                 return (
@@ -58,7 +59,6 @@ class Menu extends React.Component {
                                     </div>
                                 );
                             })}
-                            <hr />
                         </div>
                     );
                 })}
