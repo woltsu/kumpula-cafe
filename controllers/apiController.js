@@ -1,6 +1,7 @@
 var Menus = require("../models/menuModel");
 var bodyParser = require("body-parser");
 var axios = require("axios");
+var parseMenu = require("../utils/parseMenu");
 
 module.exports = function (app) {
     app.use(bodyParser.json());
