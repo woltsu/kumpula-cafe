@@ -1,6 +1,7 @@
 module.exports = {
     entry: {
-        index: __dirname + "/public/js/index.js",
+        weeklyMenu: __dirname + "/public/js/weekly-menu/index.js",
+        dailyMenu: __dirname + "/public/js/daily-menu/index.js"
     },
     output: {
         filename: "[name].transformed.js",

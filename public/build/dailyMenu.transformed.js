@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -460,9 +460,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(16);
+  module.exports = __webpack_require__(15);
 } else {
-  module.exports = __webpack_require__(17);
+  module.exports = __webpack_require__(16);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -853,7 +853,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(20);
+var isTextNode = __webpack_require__(19);
 
 /*eslint-disable no-bitwise */
 
@@ -956,97 +956,6 @@ module.exports = getActiveElement;
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(4);
-var ReactDOM = __webpack_require__(18);
-var Menu = __webpack_require__(32);
-var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
-var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
-
-class Index extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showExactum: true
-        };
-        this.changeMenu = this.changeMenu.bind(this);
-    }
-
-    changeMenu() {
-        var newState = !this.state.showExactum;
-        this.setState({
-            showExactum: newState
-        });
-    }
-
-    render() {
-        let exactumDisplay;
-        let chemicumDisplay;
-        let restaurant;
-        if (this.state.showExactum) {
-            exactumDisplay = "block";
-            chemicumDisplay = "none";
-            restaurant = "Exactum";
-        } else {
-            exactumDisplay = "none";
-            chemicumDisplay = "block";
-            restaurant = "Chemicum";
-        }
-        return React.createElement(
-            "div",
-            null,
-            React.createElement(
-                "div",
-                { "class": "container" },
-                React.createElement(
-                    "div",
-                    { "class": "row text-center" },
-                    React.createElement(
-                        "div",
-                        { "class": "col-md-12 col-xs-12", style: { display: "block" } },
-                        React.createElement(
-                            "h1",
-                            null,
-                            restaurant
-                        ),
-                        React.createElement(
-                            "div",
-                            { style: { display: exactumDisplay } },
-                            React.createElement(Menu, { restaurant: exactumURL })
-                        ),
-                        React.createElement(
-                            "div",
-                            { style: { display: chemicumDisplay } },
-                            React.createElement(Menu, { restaurant: chemicumURL })
-                        )
-                    )
-                )
-            ),
-            React.createElement(
-                "div",
-                { style: { position: "fixed", bottom: "10px", right: "10px" }, "class": "text-center" },
-                React.createElement(
-                    "button",
-                    { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
-                    "change restaurant"
-                ),
-                React.createElement("br", null),
-                React.createElement(
-                    "label",
-                    null,
-                    "Current: ",
-                    restaurant
-                )
-            )
-        );
-    }
-}
-
-ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 /*
  React v16.0.0
@@ -1074,7 +983,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2780,7 +2689,7 @@ module.exports = ReactEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2818,15 +2727,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(19);
+  module.exports = __webpack_require__(18);
 } else {
-  module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(21);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3089,7 +2998,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3104,7 +3013,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(20);
 
 /**
  * @param {*} object The object to check.
@@ -3117,7 +3026,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3145,7 +3054,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3171,11 +3080,11 @@ var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(3);
 var EventListener = __webpack_require__(10);
 var require$$0 = __webpack_require__(6);
-var hyphenateStyleName = __webpack_require__(23);
+var hyphenateStyleName = __webpack_require__(22);
 var emptyFunction = __webpack_require__(1);
-var camelizeStyleName = __webpack_require__(25);
-var performanceNow = __webpack_require__(27);
-var propTypes = __webpack_require__(29);
+var camelizeStyleName = __webpack_require__(24);
+var performanceNow = __webpack_require__(26);
+var propTypes = __webpack_require__(28);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
 var shallowEqual = __webpack_require__(11);
@@ -20374,7 +20283,7 @@ module.exports = ReactDOMFiberEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20389,7 +20298,7 @@ module.exports = ReactDOMFiberEntry;
 
 
 
-var hyphenate = __webpack_require__(24);
+var hyphenate = __webpack_require__(23);
 
 var msPattern = /^ms-/;
 
@@ -20416,7 +20325,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20452,7 +20361,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20467,7 +20376,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(26);
+var camelize = __webpack_require__(25);
 
 var msPattern = /^-ms-/;
 
@@ -20495,7 +20404,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20530,7 +20439,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20545,7 +20454,7 @@ module.exports = camelize;
  * @typechecks
  */
 
-var performance = __webpack_require__(28);
+var performance = __webpack_require__(27);
 
 var performanceNow;
 
@@ -20567,7 +20476,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20593,7 +20502,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20618,17 +20527,17 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(30)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(29)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(31)();
+  module.exports = __webpack_require__(30)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21178,7 +21087,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21243,7 +21152,26 @@ module.exports = function() {
 
 
 /***/ }),
-/* 32 */
+/* 31 */,
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(4);
+var ReactDOM = __webpack_require__(17);
+var Menu = __webpack_require__(34);
+var dateTool = __webpack_require__(35);
+
+class DailyMenu extends React.Component {
+    render() {
+        return React.createElement(Menu, { date: dateTool.today });
+    }
+}
+
+ReactDOM.render(React.createElement(DailyMenu, null), document.getElementById("app"));
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(4);
@@ -21252,84 +21180,86 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            food: {}
+            food: ""
         };
-        this.getMenu = this.getMenu.bind(this);
+        this.getDailyMenu = this.getDailyMenu.bind(this);
     }
 
-    componentDidMount() {
-        this.getMenu();
-    }
-
-    getMenu() {
+    getDailyMenu() {
         $.ajax({
             method: "get",
-            url: this.props.restaurant,
+            url: "/api/menu/" + this.props.date,
             success: function (res) {
-                var menu = {};
-                for (var a = 0; a < res.data.length; a++) {
-                    for (var b = 0; b < res.data[a].data.length; b++) {
-                        var date = res.data[a].date;
-                        if (!(date in menu)) {
-                            menu[date] = {};
-                        }
-                        var price = res.data[a].data[b].price.name;
-                        if (!(price in menu[date])) {
-                            menu[date][price] = [];
-                        }
-                        menu[date][price].push(res.data[a].data[b].name);
-                    }
-                }
+                alert("wökrs");
                 this.setState({
-                    food: menu
+                    food: res.food
                 });
             }.bind(this)
         });
     }
 
+    componentDidMount() {
+        this.getDailyMenu();
+    }
+
     render() {
-        var food = this.state.food;
         return React.createElement(
-            "div",
+            "h1",
             null,
-            Object.keys(food).map(function (date, dateIndex) {
-                return React.createElement(
-                    "div",
-                    null,
-                    React.createElement("hr", null),
-                    React.createElement(
-                        "h3",
-                        null,
-                        date
-                    ),
-                    Object.keys(food[date]).map(function (price, priceIndex) {
-                        return React.createElement(
-                            "div",
-                            null,
-                            React.createElement(
-                                "b",
-                                null,
-                                price,
-                                ":"
-                            ),
-                            food[date][price].map(function (food, foodIndex) {
-                                return React.createElement(
-                                    "p",
-                                    { key: foodIndex },
-                                    "- ",
-                                    food
-                                );
-                            }),
-                            React.createElement("br", null)
-                        );
-                    })
-                );
-            })
+            this.state.food
         );
     }
 }
 
 module.exports = Menu;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+function getDateTime() {
+
+    var date = new Date();
+
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? "0" : "") + month;
+
+    var day = date.getDate();
+    day = (day < 10 ? "0" : "") + day;
+
+    let weekday;
+    switch (date.getDay()) {
+        case 0:
+            weekday = "Su";
+            break;
+        case 1:
+            weekday = "Ma";
+            break;
+        case 2:
+            weekday = "Ti";
+            break;
+        case 3:
+            weekday = "Ke";
+            break;
+        case 4:
+            weekday = "To";
+            break;
+        case 5:
+            weekday = "Pe";
+            break;
+        case 6:
+            weekday = "La";
+            break;
+    }
+
+    return weekday + " " + day + "." + month;
+}
+
+module.exports = {
+    today: function () {
+        return getDateTime();
+    }
+};
 
 /***/ })
 /******/ ]);
