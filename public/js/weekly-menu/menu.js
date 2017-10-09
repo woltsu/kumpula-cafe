@@ -42,7 +42,7 @@ class Menu extends React.Component {
     render() {
         var food = this.state.food;
         return (
-            <div key={ this.props.key }>
+            <div key={this.props.key} style={{ marginTop: "70px" }}>
                 {Object.keys(food).map(function (date, dateIndex) {
                     return (
                         <div>

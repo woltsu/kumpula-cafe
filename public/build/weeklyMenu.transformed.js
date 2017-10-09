@@ -21338,6 +21338,7 @@ class Index extends React.Component {
 
     render() {
         let restaurant;
+        let otherRestaurant;
         var today = dateTool.today();
         let menu;
         let buttonDisplay;
@@ -21345,15 +21346,17 @@ class Index extends React.Component {
         if (this.state.showDaily) {
             menu = React.createElement(DailyMenu, { date: today });
             buttonDisplay = "none";
-            buttonTextValue = "Daily";
+            buttonTextValue = "Weekly";
         } else {
             buttonDisplay = "block";
-            buttonTextValue = "Weekly";
+            buttonTextValue = "Daily";
             if (this.state.showExactum) {
                 restaurant = "Exactum";
+                otherRestaurant = "Chemicum";
                 menu = React.createElement(WeeklyMenu, { restaurant: exactumURL, key: "1" });
             } else {
                 restaurant = "Chemicum";
+                otherRestaurant = "Exactum";
                 menu = React.createElement(WeeklyMenu, { restaurant: chemicumURL, key: "2" });
             }
         }
@@ -21362,18 +21365,22 @@ class Index extends React.Component {
             null,
             React.createElement(
                 "div",
+                { style: { position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)" } },
+                React.createElement(
+                    "h1",
+                    null,
+                    restaurant
+                )
+            ),
+            React.createElement(
+                "div",
                 { "class": "container" },
                 React.createElement(
                     "div",
                     { "class": "row text-center" },
                     React.createElement(
                         "div",
-                        { "class": "col-md-12 col-xs-12", style: { display: "block" } },
-                        React.createElement(
-                            "h1",
-                            null,
-                            restaurant
-                        ),
+                        { "class": "col-12" },
                         menu
                     )
                 )
@@ -21384,7 +21391,7 @@ class Index extends React.Component {
                 React.createElement(
                     "button",
                     { "class": "btn btn-primary", onClick: this.changeMenu },
-                    restaurant
+                    otherRestaurant
                 ),
                 React.createElement("br", null)
             ),
@@ -21452,7 +21459,7 @@ class Menu extends React.Component {
         var food = this.state.food;
         return React.createElement(
             "div",
-            { key: this.props.key },
+            { key: this.props.key, style: { marginTop: "70px" } },
             Object.keys(food).map(function (date, dateIndex) {
                 return React.createElement(
                     "div",

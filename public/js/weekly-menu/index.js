@@ -34,6 +34,7 @@ class Index extends React.Component {
 
     render() {
         let restaurant;
+        let otherRestaurant;
         var today = dateTool.today();
         let menu;
         let buttonDisplay;
@@ -41,31 +42,35 @@ class Index extends React.Component {
         if (this.state.showDaily) {
             menu = <DailyMenu date={today} />;
             buttonDisplay = "none";
-            buttonTextValue = "Daily";
+            buttonTextValue = "Weekly";
         } else {
             buttonDisplay = "block";
-            buttonTextValue = "Weekly";
+            buttonTextValue = "Daily";
             if (this.state.showExactum) {
                 restaurant = "Exactum";
+                otherRestaurant = "Chemicum";
                 menu = <WeeklyMenu restaurant={exactumURL} key="1" />;
             } else {
                 restaurant = "Chemicum";
+                otherRestaurant = "Exactum";
                 menu = <WeeklyMenu restaurant={chemicumURL} key="2" />;
             }
         }
         return (
             <div >
+                <div style={{ position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)"}}>
+                    <h1>{ restaurant }</h1>
+                </div>
                 <div class="container">
                     <div class="row text-center" >
-                        <div class="col-md-12 col-xs-12" style={{ display: "block" }} >
-                            <h1>{restaurant}</h1>
+                        <div class="col-12">
                             {menu}
                         </div>
                     </div>
                 </div>
                 <div style={{ position: "fixed", bottom: "10px", right: "10px", display: buttonDisplay }} class="text-center" >
                     <button class="btn btn-primary" onClick={this.changeMenu} >
-                        {restaurant}
+                        {otherRestaurant}
                     </button>
                     <br />
                 </div>
