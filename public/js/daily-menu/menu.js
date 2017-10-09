@@ -4,19 +4,19 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            food: ""
+            menu: []
         };
         this.getDailyMenu = this.getDailyMenu.bind(this);
     }
 
     getDailyMenu() {
+        var uri = "/api/menu/" + this.props.date;
         $.ajax({
             method: "get",
-            url: "/api/menu/" + this.props.date,
+            url: uri,
             success: function (res) {
-                alert("wökrs");
                 this.setState({
-                   food: res.food 
+                    menu: res
                 });
             }.bind(this)
         });
@@ -27,7 +27,29 @@ class Menu extends React.Component {
     }
 
     render() {
-        return <h1>{this.state.food}</h1>;
+        return (
+            <div>
+                <h1>{this.props.date}</h1>
+                {this.state.menu.map(function (menu, menuIndex) {
+                    return (
+                        <div>
+                            <h1>{menu.menu.restaurant}</h1>
+                            {Object.keys(menu.menu.food).map(function (price, priceIndex) {
+                                return (
+                                    <div>
+                                        <b>{price}:</b>
+                                        {menu.menu.food[price].map(function (food, foodIndex) {
+                                            return <p key={foodIndex}>- { food }</p>
+                                        })}
+                                        <br />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    );
+                })}
+            </div>
+        );
     }
 }
 

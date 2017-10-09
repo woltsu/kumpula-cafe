@@ -21164,7 +21164,12 @@ var dateTool = __webpack_require__(35);
 
 class DailyMenu extends React.Component {
     render() {
-        return React.createElement(Menu, { date: dateTool.today });
+        var date = dateTool.today();
+        return React.createElement(
+            "div",
+            { "class": "container" },
+            React.createElement(Menu, { date: date })
+        );
     }
 }
 
@@ -21180,19 +21185,19 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            food: ""
+            menu: []
         };
         this.getDailyMenu = this.getDailyMenu.bind(this);
     }
 
     getDailyMenu() {
+        var uri = "/api/menu/" + this.props.date;
         $.ajax({
             method: "get",
-            url: "/api/menu/" + this.props.date,
+            url: uri,
             success: function (res) {
-                alert("wökrs");
                 this.setState({
-                    food: res.food
+                    menu: res
                 });
             }.bind(this)
         });
@@ -21204,9 +21209,45 @@ class Menu extends React.Component {
 
     render() {
         return React.createElement(
-            "h1",
+            "div",
             null,
-            this.state.food
+            React.createElement(
+                "h1",
+                null,
+                this.props.date
+            ),
+            this.state.menu.map(function (menu, menuIndex) {
+                return React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "h1",
+                        null,
+                        menu.menu.restaurant
+                    ),
+                    Object.keys(menu.menu.food).map(function (price, priceIndex) {
+                        return React.createElement(
+                            "div",
+                            null,
+                            React.createElement(
+                                "b",
+                                null,
+                                price,
+                                ":"
+                            ),
+                            menu.menu.food[price].map(function (food, foodIndex) {
+                                return React.createElement(
+                                    "p",
+                                    { key: foodIndex },
+                                    "- ",
+                                    food
+                                );
+                            }),
+                            React.createElement("br", null)
+                        );
+                    })
+                );
+            })
         );
     }
 }

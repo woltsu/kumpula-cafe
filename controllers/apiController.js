@@ -2,31 +2,56 @@ var Menus = require("../models/menuModel");
 var bodyParser = require("body-parser");
 var axios = require("axios");
 var parseMenu = require("../utils/parseMenu");
+var getMenu = require("../utils/getMenu");
 
 module.exports = function (app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.get("/api/menu/:date", function (req, res) {
-        Menus.findOne({ "menu.date": req.params.date }, function (err, menu) {
+        Menus.find({ "menu.date": req.params.date }, function (err, menu) {
             if (err) throw err;
+            if (menu.length == 0) {
+                console.log("No menus found");
+                getMenu("https://messi.hyyravintolat.fi/publicapi/restaurant/11/", function () {
+                    getMenu("https://messi.hyyravintolat.fi/publicapi/restaurant/10/", function () {
+                        Menus.find({ "menu.date": req.params.date }, function (err, result) {
+                            if (err) throw err;
 
-            if (!menu) {
-                axios.get("https://messi.hyyravintolat.fi/publicapi/restaurant/11/")
-                    .then(function (response) {
-                        res.send({
-                            food: "food"
+                            if (result.length == 0) {
+                                var emptyMenu = new Menus({
+                                    menu: {
+                                        date: req.params.date,
+                                        food: {},
+                                        restaurant: "No food"
+                                    }
+                                });
+                                emptyMenu.save(function (err, result) {
+                                    if (err) throw err;
+                                    var arr = [];
+                                    arr.push(result);
+                                    res.send(arr);
+                                });
+                            } else {
+                                res.send(result);
+                            }
                         });
                     });
+                });
             } else {
+                console.log("Menu found");
                 res.send(menu);
             }
         });
     });
 
-    app.post("/api/menu", function(req, res) {
-        var newMenu = Menus({
-            menu: res.menu
+    app.post("/api/menu", function (req, res) {
+        Menus.create({
+            menu: {
+                date: req.body.restaurant,
+                food: req.body.restaurant,
+                restaurant: req.body.restaurant
+            }
         });
     });
 

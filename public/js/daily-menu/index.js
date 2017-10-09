@@ -5,7 +5,12 @@ var dateTool = require("../../../utils/dateTool");
 
 class DailyMenu extends React.Component {
     render() {
-        return <Menu date={dateTool.today} />
+        var date = dateTool.today();
+        return (
+            <div class="container">
+                <Menu date={date} />
+            </div>
+        );
     }
 }
 
