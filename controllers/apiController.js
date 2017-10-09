@@ -19,17 +19,12 @@ module.exports = function (app) {
                             if (err) throw err;
 
                             if (result.length == 0) {
-                                var emptyMenu = new Menus({
+                                res.send({
                                     menu: {
                                         date: req.params.date,
                                         food: {},
                                         restaurant: "No food"
                                     }
-                                });
-                                emptyMenu.save(function (err, result) {
-                                    if (err) throw err;
-
-                                    res.redirect("/api/menu/" + req.params.date);
                                 });
                             } else {
                                 res.redirect("/api/menu/" + req.params.date);
