@@ -29,25 +29,36 @@ class Menu extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.date}</h1>
-                {this.state.menu.map(function (menu, menuIndex) {
-                    return (
-                        <div>
-                            <h1>{menu.menu.restaurant}</h1>
-                            {Object.keys(menu.menu.food).map(function (price, priceIndex) {
-                                return (
-                                    <div>
-                                        <b>{price}:</b>
-                                        {menu.menu.food[price].map(function (food, foodIndex) {
-                                            return <p key={foodIndex}>- { food }</p>
-                                        })}
-                                        <br />
-                                    </div>
-                                );
-                            })}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h1>{this.props.date}</h1>
                         </div>
-                    );
-                })}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    {this.state.menu.map(function (menu, menuIndex) {
+                        return (
+                            <div class="col-md-6 col-xs-12">
+                                <div class="text-center">
+                                    <h1>{menu.menu.restaurant}</h1>
+                                    {Object.keys(menu.menu.food).map(function (price, priceIndex) {
+                                        return (
+                                            <div>
+                                                <b>{price}:</b>
+                                                {menu.menu.food[price].map(function (food, foodIndex) {
+                                                    return <p key={foodIndex}>- { food }</p>
+                                                })}
+                                                <br />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         );
     }

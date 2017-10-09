@@ -42,7 +42,7 @@ class Menu extends React.Component {
     render() {
         var food = this.state.food;
         return (
-            <div>
+            <div key={ this.props.key }>
                 {Object.keys(food).map(function (date, dateIndex) {
                     return (
                         <div>

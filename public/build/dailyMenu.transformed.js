@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21152,31 +21152,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 31 */,
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var React = __webpack_require__(4);
-var ReactDOM = __webpack_require__(17);
-var Menu = __webpack_require__(34);
-var dateTool = __webpack_require__(35);
-
-class DailyMenu extends React.Component {
-    render() {
-        var date = dateTool.today();
-        return React.createElement(
-            "div",
-            { "class": "container" },
-            React.createElement(Menu, { date: date })
-        );
-    }
-}
-
-ReactDOM.render(React.createElement(DailyMenu, null), document.getElementById("app"));
-
-/***/ }),
-/* 34 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(4);
@@ -21212,42 +21188,63 @@ class Menu extends React.Component {
             "div",
             null,
             React.createElement(
-                "h1",
-                null,
-                this.props.date
-            ),
-            this.state.menu.map(function (menu, menuIndex) {
-                return React.createElement(
+                "div",
+                { "class": "row" },
+                React.createElement(
                     "div",
-                    null,
+                    { "class": "col-12" },
                     React.createElement(
-                        "h1",
-                        null,
-                        menu.menu.restaurant
-                    ),
-                    Object.keys(menu.menu.food).map(function (price, priceIndex) {
-                        return React.createElement(
-                            "div",
+                        "div",
+                        { "class": "text-center" },
+                        React.createElement(
+                            "h1",
                             null,
+                            this.props.date
+                        )
+                    )
+                )
+            ),
+            React.createElement("hr", null),
+            React.createElement(
+                "div",
+                { "class": "row" },
+                this.state.menu.map(function (menu, menuIndex) {
+                    return React.createElement(
+                        "div",
+                        { "class": "col-md-6 col-xs-12" },
+                        React.createElement(
+                            "div",
+                            { "class": "text-center" },
                             React.createElement(
-                                "b",
+                                "h1",
                                 null,
-                                price,
-                                ":"
+                                menu.menu.restaurant
                             ),
-                            menu.menu.food[price].map(function (food, foodIndex) {
+                            Object.keys(menu.menu.food).map(function (price, priceIndex) {
                                 return React.createElement(
-                                    "p",
-                                    { key: foodIndex },
-                                    "- ",
-                                    food
+                                    "div",
+                                    null,
+                                    React.createElement(
+                                        "b",
+                                        null,
+                                        price,
+                                        ":"
+                                    ),
+                                    menu.menu.food[price].map(function (food, foodIndex) {
+                                        return React.createElement(
+                                            "p",
+                                            { key: foodIndex },
+                                            "- ",
+                                            food
+                                        );
+                                    }),
+                                    React.createElement("br", null)
                                 );
-                            }),
-                            React.createElement("br", null)
-                        );
-                    })
-                );
-            })
+                            })
+                        )
+                    );
+                })
+            )
         );
     }
 }
@@ -21255,7 +21252,7 @@ class Menu extends React.Component {
 module.exports = Menu;
 
 /***/ }),
-/* 35 */
+/* 32 */
 /***/ (function(module, exports) {
 
 function getDateTime() {
@@ -21301,6 +21298,43 @@ module.exports = {
         return getDateTime();
     }
 };
+
+/***/ }),
+/* 33 */,
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(4);
+var ReactDOM = __webpack_require__(17);
+var Menu = __webpack_require__(31);
+var dateTool = __webpack_require__(32);
+
+class DailyMenu extends React.Component {
+    render() {
+        var date = dateTool.today();
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { "class": "row" },
+                React.createElement(
+                    "div",
+                    { "class": "col-12 text-center" },
+                    React.createElement(
+                        "h1",
+                        null,
+                        date
+                    )
+                )
+            ),
+            React.createElement(Menu, { date: date })
+        );
+    }
+}
+
+ReactDOM.render(React.createElement(DailyMenu, null), document.getElementById("app"));
 
 /***/ })
 /******/ ]);

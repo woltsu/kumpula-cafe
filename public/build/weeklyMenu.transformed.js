@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21156,8 +21156,158 @@ module.exports = function() {
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(4);
+
+class Menu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menu: []
+        };
+        this.getDailyMenu = this.getDailyMenu.bind(this);
+    }
+
+    getDailyMenu() {
+        var uri = "/api/menu/" + this.props.date;
+        $.ajax({
+            method: "get",
+            url: uri,
+            success: function (res) {
+                this.setState({
+                    menu: res
+                });
+            }.bind(this)
+        });
+    }
+
+    componentDidMount() {
+        this.getDailyMenu();
+    }
+
+    render() {
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { "class": "row" },
+                React.createElement(
+                    "div",
+                    { "class": "col-12" },
+                    React.createElement(
+                        "div",
+                        { "class": "text-center" },
+                        React.createElement(
+                            "h1",
+                            null,
+                            this.props.date
+                        )
+                    )
+                )
+            ),
+            React.createElement("hr", null),
+            React.createElement(
+                "div",
+                { "class": "row" },
+                this.state.menu.map(function (menu, menuIndex) {
+                    return React.createElement(
+                        "div",
+                        { "class": "col-md-6 col-xs-12" },
+                        React.createElement(
+                            "div",
+                            { "class": "text-center" },
+                            React.createElement(
+                                "h1",
+                                null,
+                                menu.menu.restaurant
+                            ),
+                            Object.keys(menu.menu.food).map(function (price, priceIndex) {
+                                return React.createElement(
+                                    "div",
+                                    null,
+                                    React.createElement(
+                                        "b",
+                                        null,
+                                        price,
+                                        ":"
+                                    ),
+                                    menu.menu.food[price].map(function (food, foodIndex) {
+                                        return React.createElement(
+                                            "p",
+                                            { key: foodIndex },
+                                            "- ",
+                                            food
+                                        );
+                                    }),
+                                    React.createElement("br", null)
+                                );
+                            })
+                        )
+                    );
+                })
+            )
+        );
+    }
+}
+
+module.exports = Menu;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+function getDateTime() {
+
+    var date = new Date();
+
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? "0" : "") + month;
+
+    var day = date.getDate();
+    day = (day < 10 ? "0" : "") + day;
+
+    let weekday;
+    switch (date.getDay()) {
+        case 0:
+            weekday = "Su";
+            break;
+        case 1:
+            weekday = "Ma";
+            break;
+        case 2:
+            weekday = "Ti";
+            break;
+        case 3:
+            weekday = "Ke";
+            break;
+        case 4:
+            weekday = "To";
+            break;
+        case 5:
+            weekday = "Pe";
+            break;
+        case 6:
+            weekday = "La";
+            break;
+    }
+
+    return weekday + " " + day + "." + month;
+}
+
+module.exports = {
+    today: function () {
+        return getDateTime();
+    }
+};
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(4);
 var ReactDOM = __webpack_require__(17);
-var Menu = __webpack_require__(32);
+var WeeklyMenu = __webpack_require__(34);
+var DailyMenu = __webpack_require__(31);
+var dateTool = __webpack_require__(32);
 var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
 var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
 
@@ -21165,9 +21315,11 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showExactum: true
+            showExactum: true,
+            showDaily: true
         };
         this.changeMenu = this.changeMenu.bind(this);
+        this.showDaily = this.showDaily.bind(this);
     }
 
     changeMenu() {
@@ -21177,18 +21329,33 @@ class Index extends React.Component {
         });
     }
 
+    showDaily() {
+        var newState = !this.state.showDaily;
+        this.setState({
+            showDaily: newState
+        });
+    }
+
     render() {
-        let exactumDisplay;
-        let chemicumDisplay;
         let restaurant;
-        if (this.state.showExactum) {
-            exactumDisplay = "block";
-            chemicumDisplay = "none";
-            restaurant = "Exactum";
+        var today = dateTool.today();
+        let menu;
+        let buttonDisplay;
+        let buttonTextValue;
+        if (this.state.showDaily) {
+            menu = React.createElement(DailyMenu, { date: today });
+            buttonDisplay = "none";
+            buttonTextValue = "Daily";
         } else {
-            exactumDisplay = "none";
-            chemicumDisplay = "block";
-            restaurant = "Chemicum";
+            buttonDisplay = "block";
+            buttonTextValue = "Weekly";
+            if (this.state.showExactum) {
+                restaurant = "Exactum";
+                menu = React.createElement(WeeklyMenu, { restaurant: exactumURL, key: "1" });
+            } else {
+                restaurant = "Chemicum";
+                menu = React.createElement(WeeklyMenu, { restaurant: chemicumURL, key: "2" });
+            }
         }
         return React.createElement(
             "div",
@@ -21207,33 +21374,27 @@ class Index extends React.Component {
                             null,
                             restaurant
                         ),
-                        React.createElement(
-                            "div",
-                            { style: { display: exactumDisplay } },
-                            React.createElement(Menu, { restaurant: exactumURL })
-                        ),
-                        React.createElement(
-                            "div",
-                            { style: { display: chemicumDisplay } },
-                            React.createElement(Menu, { restaurant: chemicumURL })
-                        )
+                        menu
                     )
                 )
             ),
             React.createElement(
                 "div",
-                { style: { position: "fixed", bottom: "10px", right: "10px" }, "class": "text-center" },
+                { style: { position: "fixed", bottom: "10px", right: "10px", display: buttonDisplay }, "class": "text-center" },
                 React.createElement(
                     "button",
-                    { "class": "btn btn-primary", onClick: this.changeMenu, style: {} },
-                    "change restaurant"
-                ),
-                React.createElement("br", null),
-                React.createElement(
-                    "label",
-                    null,
-                    "Current: ",
+                    { "class": "btn btn-primary", onClick: this.changeMenu },
                     restaurant
+                ),
+                React.createElement("br", null)
+            ),
+            React.createElement(
+                "div",
+                { style: { position: "fixed", bottom: "10px", left: "10px" }, "class": "text-center" },
+                React.createElement(
+                    "button",
+                    { "class": "btn btn-primary", onClick: this.showDaily, style: {} },
+                    buttonTextValue
                 )
             )
         );
@@ -21243,7 +21404,7 @@ class Index extends React.Component {
 ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(4);
@@ -21291,7 +21452,7 @@ class Menu extends React.Component {
         var food = this.state.food;
         return React.createElement(
             "div",
-            null,
+            { key: this.props.key },
             Object.keys(food).map(function (date, dateIndex) {
                 return React.createElement(
                     "div",

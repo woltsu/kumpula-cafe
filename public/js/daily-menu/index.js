@@ -7,7 +7,12 @@ class DailyMenu extends React.Component {
     render() {
         var date = dateTool.today();
         return (
-            <div class="container">
+            <div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1>{date}</h1>
+                    </div>
+                </div>
                 <Menu date={date} />
             </div>
         );
