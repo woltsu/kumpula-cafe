@@ -28,12 +28,11 @@ module.exports = function (app) {
                                 });
                                 emptyMenu.save(function (err, result) {
                                     if (err) throw err;
-                                    var arr = [];
-                                    arr.push(result);
-                                    res.send(arr);
+
+                                    res.redirect("/api/menu/" + req.params.date);
                                 });
                             } else {
-                                res.send(result);
+                                res.redirect("/api/menu/" + req.params.date);
                             }
                         });
                     });
