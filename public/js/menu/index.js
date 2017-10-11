@@ -68,13 +68,13 @@ class Index extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }} class="text-center" >
+                <div style={{ position: "fixed", bottom: "10px", right: "2%", display: buttonDisplay }} class="text-center" >
                     <button class="btn btn-sample" onClick={this.changeMenu} >
                         {otherRestaurant}
                     </button>
                     <br />
                 </div>
-                <div style={{ position: "fixed", bottom: "10px", left: "15px" }} class="text-center" >
+                <div style={{ position: "fixed", bottom: "10px", left: "2%" }} class="text-center" >
                     <button class="btn btn-sample" onClick={this.showDaily} style={{}} >
                         {buttonTextValue}
                     </button>

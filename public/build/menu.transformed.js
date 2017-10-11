@@ -1061,7 +1061,7 @@ class Index extends React.Component {
             ),
             React.createElement(
                 "div",
-                { style: { position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }, "class": "text-center" },
+                { style: { position: "fixed", bottom: "10px", right: "2%", display: buttonDisplay }, "class": "text-center" },
                 React.createElement(
                     "button",
                     { "class": "btn btn-sample", onClick: this.changeMenu },
@@ -1071,7 +1071,7 @@ class Index extends React.Component {
             ),
             React.createElement(
                 "div",
-                { style: { position: "fixed", bottom: "10px", left: "15px" }, "class": "text-center" },
+                { style: { position: "fixed", bottom: "10px", left: "2%" }, "class": "text-center" },
                 React.createElement(
                     "button",
                     { "class": "btn btn-sample", onClick: this.showDaily, style: {} },
