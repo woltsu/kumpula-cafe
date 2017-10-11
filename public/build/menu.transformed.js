@@ -692,7 +692,7 @@ module.exports = ExecutionEnvironment;
 module.exports = {
     box: {
         boxSizing: "border-box",
-        padding: "9px",
+        padding: "10px",
         marginTop: "2%",
         marginBottom: "4%",
         marginLeft: "4%",
@@ -998,7 +998,7 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight;
+        var height = document.getElementById(nameId).clientHeight - 3;
         var expandedHeight = document.getElementById(infoId).clientHeight;
         if (expandedHeight != 0) {
             expandedHeight = divHeight;
