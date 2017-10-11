@@ -692,6 +692,7 @@ module.exports = ExecutionEnvironment;
 module.exports = {
     box: {
         boxSizing: "border-box",
+        padding: "9px",
         marginTop: "2%",
         marginBottom: "4%",
         marginLeft: "4%",
@@ -1040,7 +1041,7 @@ class Info extends React.Component {
         var infoId = "info-" + this.props.index;
         return React.createElement(
             "div",
-            { style: { padding: "5px" } },
+            null,
             React.createElement(
                 "div",
                 { id: this.props.index, onClick: this.handleClick, style: divStyle },

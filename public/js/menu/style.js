@@ -1,6 +1,7 @@
 module.exports = {
     box: {
         boxSizing: "border-box",
+        padding: "9px",
         marginTop: "2%",
         marginBottom: "4%",
         marginLeft: "4%",
