@@ -998,7 +998,7 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight - 3;
+        var height = document.getElementById(nameId).clientHeight;
         var expandedHeight = document.getElementById(infoId).clientHeight;
         if (expandedHeight != 0) {
             expandedHeight = divHeight;
@@ -1046,15 +1046,19 @@ class Info extends React.Component {
                 "div",
                 { id: this.props.index, onClick: this.handleClick, style: divStyle },
                 React.createElement(
-                    "p",
-                    { id: nameId },
+                    "div",
+                    { style: { marginBottom: "2%" } },
                     React.createElement(
-                        "a",
-                        { style: rotationStyle },
-                        ">"
-                    ),
-                    " ",
-                    this.props.text
+                        "p",
+                        { id: nameId },
+                        React.createElement(
+                            "a",
+                            { style: rotationStyle },
+                            ">"
+                        ),
+                        " ",
+                        this.props.text
+                    )
                 ),
                 React.createElement(
                     "p",
