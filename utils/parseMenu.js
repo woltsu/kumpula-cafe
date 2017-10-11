@@ -10,7 +10,7 @@ module.exports = function (res) {
             if (!(price in menu[date])) {
                 menu[date][price] = [];
             }
-            menu[date][price].push(res.data[a].data[b].name);
+            menu[date][price].push({name: res.data[a].data[b].name, info: res.data[a].data[b].nutrition});
         }
     }
     return menu;

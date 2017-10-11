@@ -1,5 +1,6 @@
 var React = require("react");
 var style = require("./style");
+var Info = require("./food-info");
 
 class Menu extends React.Component {
     constructor(props) {
@@ -49,7 +50,11 @@ class Menu extends React.Component {
                                             <div>
                                                 <h5><b>{price}:</b></h5>
                                                 {menu.menu.food[price].map(function (food, foodIndex) {
-                                                    return <p key={foodIndex}>> { food }</p>
+                                                    return (
+                                                        <div style={{marginBottom: "2%"}}>
+                                                            <Info text={food.name} info={food.info} index={foodIndex} />
+                                                        </div>
+                                                    );
                                                 })}
                                                 <br />
                                             </div>

@@ -977,7 +977,7 @@ var React = __webpack_require__(3);
 var ReactDOM = __webpack_require__(19);
 var WeeklyMenu = __webpack_require__(33);
 var DailyMenu = __webpack_require__(34);
-var dateTool = __webpack_require__(35);
+var dateTool = __webpack_require__(36);
 var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
 var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
 
@@ -21379,6 +21379,7 @@ module.exports = Menu;
 
 var React = __webpack_require__(3);
 var style = __webpack_require__(15);
+var Info = __webpack_require__(35);
 
 class Menu extends React.Component {
     constructor(props) {
@@ -21459,10 +21460,9 @@ class Menu extends React.Component {
                                     ),
                                     menu.menu.food[price].map(function (food, foodIndex) {
                                         return React.createElement(
-                                            "p",
-                                            { key: foodIndex },
-                                            "> ",
-                                            food
+                                            "div",
+                                            { style: { marginBottom: "2%" } },
+                                            React.createElement(Info, { text: food.name, info: food.info, index: foodIndex })
                                         );
                                     }),
                                     React.createElement("br", null)
@@ -21480,6 +21480,95 @@ module.exports = Menu;
 
 /***/ }),
 /* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(3);
+
+class Info extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            opened: false
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        var nameId = "name-" + this.props.index;
+        var infoId = "info-" + this.props.index;
+        var divHeight = document.getElementById(this.props.index).clientHeight;
+        var height = document.getElementById(nameId).clientHeight;
+        var expandedHeight = document.getElementById(infoId).clientHeight;
+        if (expandedHeight != 0) {
+            expandedHeight = expandedHeight + height;
+        }
+        this.setState({
+            height: height,
+            expandedHeight: expandedHeight
+        });
+    }
+
+    handleClick() {
+        var newOpened = !this.state.opened;
+        let value;
+        newOpened ? value = this.state.expandedHeight : value = -1 * this.state.expandedHeight;
+        var newHeight = parseInt(this.state.height) + value;
+        this.setState({
+            opened: newOpened,
+            height: newHeight
+        });
+    }
+
+    render() {
+        var height = this.state.height + "px";
+        var divStyle = {
+            height: height,
+            transition: "height 2s",
+            overflow: "hidden"
+        };
+        var transform = "none";
+        if (this.state.opened) {
+            transform = "rotate(90deg)";
+        }
+        var rotationStyle = {
+            WebkitTransform: transform,
+            transition: "all 1s",
+            display: "inline-block"
+        };
+        var nameId = "name-" + this.props.index;
+        var infoId = "info-" + this.props.index;
+        var testId = "test-" + this.props.index;
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { id: this.props.index, onClick: this.handleClick, style: divStyle },
+                React.createElement(
+                    "p",
+                    { id: nameId },
+                    React.createElement(
+                        "a",
+                        { style: rotationStyle },
+                        ">"
+                    ),
+                    " ",
+                    this.props.text
+                ),
+                React.createElement(
+                    "p",
+                    { id: infoId },
+                    this.props.info
+                )
+            )
+        );
+    }
+}
+
+module.exports = Info;
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports) {
 
 function getDateTime() {
