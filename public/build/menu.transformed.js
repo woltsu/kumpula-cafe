@@ -21523,7 +21523,7 @@ class Info extends React.Component {
         var height = this.state.height + "px";
         var divStyle = {
             height: height,
-            transition: "height 2s",
+            transition: "height 1s",
             overflow: "hidden"
         };
         var transform = "none";
@@ -21533,6 +21533,7 @@ class Info extends React.Component {
         var rotationStyle = {
             WebkitTransform: transform,
             transition: "all 1s",
+            transitionTimingFunction: "linear",
             display: "inline-block"
         };
         var nameId = "name-" + this.props.index;
