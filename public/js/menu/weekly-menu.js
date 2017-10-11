@@ -54,7 +54,7 @@ class Menu extends React.Component {
                                     <div>
                                         <b>{price}:</b>
                                         {food[date][price].map(function (food, foodIndex) {
-                                            return <p key={foodIndex}>- { food }</p>
+                                            return <p key={foodIndex}>> { food }</p>;
                                         })}
                                         <br />
                                     </div>

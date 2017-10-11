@@ -21358,7 +21358,7 @@ class Menu extends React.Component {
                                 return React.createElement(
                                     "p",
                                     { key: foodIndex },
-                                    "- ",
+                                    "> ",
                                     food
                                 );
                             }),
@@ -21461,7 +21461,7 @@ class Menu extends React.Component {
                                         return React.createElement(
                                             "p",
                                             { key: foodIndex },
-                                            "- ",
+                                            "> ",
                                             food
                                         );
                                     }),
