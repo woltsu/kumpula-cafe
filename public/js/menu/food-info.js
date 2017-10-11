@@ -14,8 +14,8 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight - 3;
         var expandedHeight = document.getElementById(infoId).clientHeight;
+        var height = divHeight - expandedHeight;        
         if (expandedHeight != 0) {
             expandedHeight = divHeight;
         }
