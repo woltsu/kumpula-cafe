@@ -14,7 +14,7 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight - 3;
+        var height = document.getElementById(nameId).clientHeight;
         var expandedHeight = document.getElementById(infoId).clientHeight;
         if (expandedHeight != 0) {
             expandedHeight = divHeight;
@@ -58,7 +58,9 @@ class Info extends React.Component {
         return (
             <div>
                 <div id={this.props.index} onClick={this.handleClick} style={divStyle}>
-                    <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
+                    <div style={{marginBottom: "2%"}}>
+                        <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
+                    </div>
                     <p id={infoId} style={{ color: "#696969" }}>{this.props.info}</p>
                     <hr />
                 </div>
