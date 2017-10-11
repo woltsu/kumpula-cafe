@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -363,9 +363,9 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(17);
-} else {
   module.exports = __webpack_require__(18);
+} else {
+  module.exports = __webpack_require__(19);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -853,7 +853,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(21);
+var isTextNode = __webpack_require__(22);
 
 /*eslint-disable no-bitwise */
 
@@ -974,9 +974,99 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
-var ReactDOM = __webpack_require__(19);
-var WeeklyMenu = __webpack_require__(33);
-var DailyMenu = __webpack_require__(34);
+
+class Info extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            opened: false
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        var nameId = "name-" + this.props.index;
+        var infoId = "info-" + this.props.index;
+        var divHeight = document.getElementById(this.props.index).clientHeight;
+        var height = document.getElementById(nameId).clientHeight;
+        var expandedHeight = document.getElementById(infoId).clientHeight;
+        if (expandedHeight != 0) {
+            expandedHeight = divHeight;
+        }
+        this.setState({
+            height: height,
+            expandedHeight: expandedHeight
+        });
+    }
+
+    handleClick() {
+        var newOpened = !this.state.opened;
+        let value;
+        newOpened ? value = this.state.expandedHeight : value = -1 * this.state.expandedHeight;
+        var newHeight = this.state.height + value;
+        this.setState({
+            opened: newOpened,
+            height: newHeight
+        });
+    }
+
+    render() {
+        var height = this.state.height + "px";
+        var divStyle = {
+            height: height,
+            transition: "height 1s",
+            overflow: "hidden",
+            cursor: "pointer"
+        };
+        var transform = "none";
+        if (this.state.opened) {
+            transform = "rotate(90deg)";
+        }
+        var rotationStyle = {
+            WebkitTransform: transform,
+            transition: "all 0.5s",
+            display: "inline-block"
+        };
+        var nameId = "name-" + this.props.index;
+        var infoId = "info-" + this.props.index;
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { id: this.props.index, onClick: this.handleClick, style: divStyle },
+                React.createElement(
+                    "p",
+                    { id: nameId },
+                    React.createElement(
+                        "a",
+                        { style: rotationStyle },
+                        ">"
+                    ),
+                    " ",
+                    this.props.text
+                ),
+                React.createElement(
+                    "p",
+                    { id: infoId, style: { color: "#696969" } },
+                    this.props.info
+                ),
+                React.createElement("hr", null)
+            )
+        );
+    }
+}
+
+module.exports = Info;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(20);
+var WeeklyMenu = __webpack_require__(34);
+var DailyMenu = __webpack_require__(35);
 var dateTool = __webpack_require__(36);
 var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
 var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
@@ -1085,7 +1175,7 @@ class Index extends React.Component {
 ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,7 +1205,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2821,7 +2911,7 @@ module.exports = ReactEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2859,15 +2949,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(20);
+  module.exports = __webpack_require__(21);
 } else {
-  module.exports = __webpack_require__(23);
+  module.exports = __webpack_require__(24);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3130,7 +3220,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3145,7 +3235,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
  * @typechecks
  */
 
-var isNode = __webpack_require__(22);
+var isNode = __webpack_require__(23);
 
 /**
  * @param {*} object The object to check.
@@ -3158,7 +3248,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3186,7 +3276,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3212,11 +3302,11 @@ var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(4);
 var EventListener = __webpack_require__(10);
 var require$$0 = __webpack_require__(6);
-var hyphenateStyleName = __webpack_require__(24);
+var hyphenateStyleName = __webpack_require__(25);
 var emptyFunction = __webpack_require__(1);
-var camelizeStyleName = __webpack_require__(26);
-var performanceNow = __webpack_require__(28);
-var propTypes = __webpack_require__(30);
+var camelizeStyleName = __webpack_require__(27);
+var performanceNow = __webpack_require__(29);
+var propTypes = __webpack_require__(31);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
 var shallowEqual = __webpack_require__(11);
@@ -20415,7 +20505,7 @@ module.exports = ReactDOMFiberEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20430,7 +20520,7 @@ module.exports = ReactDOMFiberEntry;
 
 
 
-var hyphenate = __webpack_require__(25);
+var hyphenate = __webpack_require__(26);
 
 var msPattern = /^ms-/;
 
@@ -20457,7 +20547,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20493,7 +20583,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20508,7 +20598,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(27);
+var camelize = __webpack_require__(28);
 
 var msPattern = /^-ms-/;
 
@@ -20536,7 +20626,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20571,7 +20661,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20586,7 +20676,7 @@ module.exports = camelize;
  * @typechecks
  */
 
-var performance = __webpack_require__(29);
+var performance = __webpack_require__(30);
 
 var performanceNow;
 
@@ -20608,7 +20698,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20634,7 +20724,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20659,17 +20749,17 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(31)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(32)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(32)();
+  module.exports = __webpack_require__(33)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21219,7 +21309,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21284,11 +21374,12 @@ module.exports = function() {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
 var style = __webpack_require__(15);
+var Info = __webpack_require__(16);
 
 class Menu extends React.Component {
     constructor(props) {
@@ -21319,7 +21410,7 @@ class Menu extends React.Component {
                         if (!(price in menu[date])) {
                             menu[date][price] = [];
                         }
-                        menu[date][price].push(res.data[a].data[b].name);
+                        menu[date][price].push({ name: res.data[a].data[b].name, info: res.data[a].data[b].nutrition });
                     }
                 }
                 this.setState({
@@ -21356,10 +21447,9 @@ class Menu extends React.Component {
                             ),
                             food[date][price].map(function (food, foodIndex) {
                                 return React.createElement(
-                                    "p",
-                                    { key: foodIndex },
-                                    "> ",
-                                    food
+                                    "div",
+                                    { style: { marginBottom: "2%" } },
+                                    React.createElement(Info, { text: food.name, info: food.info, index: foodIndex })
                                 );
                             }),
                             React.createElement("br", null)
@@ -21374,12 +21464,12 @@ class Menu extends React.Component {
 module.exports = Menu;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
 var style = __webpack_require__(15);
-var Info = __webpack_require__(35);
+var Info = __webpack_require__(16);
 
 class Menu extends React.Component {
     constructor(props) {
@@ -21477,95 +21567,6 @@ class Menu extends React.Component {
 }
 
 module.exports = Menu;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var React = __webpack_require__(3);
-
-class Info extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opened: false
-        };
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    componentDidMount() {
-        var nameId = "name-" + this.props.index;
-        var infoId = "info-" + this.props.index;
-        var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight;
-        var expandedHeight = document.getElementById(infoId).clientHeight;
-        if (expandedHeight != 0) {
-            expandedHeight = expandedHeight + height;
-        }
-        this.setState({
-            height: height,
-            expandedHeight: expandedHeight
-        });
-    }
-
-    handleClick() {
-        var newOpened = !this.state.opened;
-        let value;
-        newOpened ? value = this.state.expandedHeight : value = -1 * this.state.expandedHeight;
-        var newHeight = parseInt(this.state.height) + value;
-        this.setState({
-            opened: newOpened,
-            height: newHeight
-        });
-    }
-
-    render() {
-        var height = this.state.height + "px";
-        var divStyle = {
-            height: height,
-            transition: "height 1s",
-            overflow: "hidden"
-        };
-        var transform = "none";
-        if (this.state.opened) {
-            transform = "rotate(90deg)";
-        }
-        var rotationStyle = {
-            WebkitTransform: transform,
-            transition: "all 0.5s",
-            display: "inline-block"
-        };
-        var nameId = "name-" + this.props.index;
-        var infoId = "info-" + this.props.index;
-        var testId = "test-" + this.props.index;
-        return React.createElement(
-            "div",
-            null,
-            React.createElement(
-                "div",
-                { id: this.props.index, onClick: this.handleClick, style: divStyle },
-                React.createElement(
-                    "p",
-                    { id: nameId },
-                    React.createElement(
-                        "a",
-                        { style: rotationStyle },
-                        ">"
-                    ),
-                    " ",
-                    this.props.text
-                ),
-                React.createElement(
-                    "p",
-                    { id: infoId },
-                    this.props.info
-                )
-            )
-        );
-    }
-}
-
-module.exports = Info;
 
 /***/ }),
 /* 36 */

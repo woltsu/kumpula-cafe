@@ -16,7 +16,7 @@ class Info extends React.Component {
         var height = document.getElementById(nameId).clientHeight;
         var expandedHeight = document.getElementById(infoId).clientHeight;
         if (expandedHeight != 0) {
-            expandedHeight = expandedHeight + height;
+            expandedHeight = divHeight;
         }
         this.setState({
             height: height,
@@ -28,7 +28,7 @@ class Info extends React.Component {
         var newOpened = !this.state.opened;
         let value;
         newOpened ? value = this.state.expandedHeight : value = -1 * this.state.expandedHeight;
-        var newHeight = (parseInt(this.state.height) + value);
+        var newHeight = this.state.height + value;
         this.setState({
             opened: newOpened,
             height: newHeight
@@ -40,7 +40,8 @@ class Info extends React.Component {
         var divStyle = {
             height: height,
             transition: "height 1s",
-            overflow: "hidden"
+            overflow: "hidden",
+            cursor: "pointer"
         }
         var transform = "none";
         if (this.state.opened) {
@@ -53,12 +54,12 @@ class Info extends React.Component {
         }
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
-        var testId = "test-" + this.props.index;
         return (
             <div>
                 <div id={this.props.index} onClick={this.handleClick} style={divStyle}>
                     <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
-                    <p id={infoId}>{this.props.info}</p>
+                    <p id={infoId} style={{color: "#696969"}}>{this.props.info}</p>
+                    <hr />
                 </div>
             </div>
         );
