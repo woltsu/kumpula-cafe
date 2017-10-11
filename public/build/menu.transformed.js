@@ -687,6 +687,31 @@ module.exports = ExecutionEnvironment;
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    box: {
+        boxSizing: "border-box",
+        marginTop: "2%",
+        marginBottom: "4%",
+        marginLeft: "4%",
+        marginRight: "4%",
+        backgroundColor: "white",
+        boxShadow: "0px 2px 5px 0px rgba(0,0,0,0.16), 0px 2px 10px 0px rgba(0,0,0,0.12)"
+    },
+    embedBox: {
+        boxSizing: "border-box",
+        marginTop: "2%",
+        marginBottom: "4%",
+        marginLeft: "4%",
+        marginRight: "4%",
+        backgroundColor: "#fafafa",
+        boxShadow: "0px 0px 0px 1px #e4e4e4, 0px 0px 0px 1px #e4e4e4"
+    }
+};
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -767,7 +792,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -838,7 +863,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -881,7 +906,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -911,7 +936,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -953,27 +978,11 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    box: {
-        boxSizing: "border-box",
-        padding: "10px",
-        marginTop: "2%",
-        marginBottom: "4%",
-        marginLeft: "4%",
-        marginRight: "4%",
-        backgroundColor: "white",
-        boxShadow: "0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)"
-    }
-};
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
+var style = __webpack_require__(10);
 
 class Info extends React.Component {
     constructor(props) {
@@ -1031,7 +1040,7 @@ class Info extends React.Component {
         var infoId = "info-" + this.props.index;
         return React.createElement(
             "div",
-            null,
+            { style: { padding: "5px" } },
             React.createElement(
                 "div",
                 { id: this.props.index, onClick: this.handleClick, style: divStyle },
@@ -2971,7 +2980,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(3);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(4),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
+var aa=__webpack_require__(3);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(4),ba=__webpack_require__(11),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(12),fa=__webpack_require__(13),ha=__webpack_require__(14),ia=__webpack_require__(15);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -3300,7 +3309,7 @@ var react = __webpack_require__(3);
 var invariant = __webpack_require__(2);
 var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(4);
-var EventListener = __webpack_require__(10);
+var EventListener = __webpack_require__(11);
 var require$$0 = __webpack_require__(6);
 var hyphenateStyleName = __webpack_require__(25);
 var emptyFunction = __webpack_require__(1);
@@ -3309,10 +3318,10 @@ var performanceNow = __webpack_require__(29);
 var propTypes = __webpack_require__(31);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
-var shallowEqual = __webpack_require__(11);
-var containsNode = __webpack_require__(12);
-var focusNode = __webpack_require__(13);
-var getActiveElement = __webpack_require__(14);
+var shallowEqual = __webpack_require__(12);
+var containsNode = __webpack_require__(13);
+var focusNode = __webpack_require__(14);
+var getActiveElement = __webpack_require__(15);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -21378,7 +21387,7 @@ module.exports = function() {
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
-var style = __webpack_require__(15);
+var style = __webpack_require__(10);
 var Info = __webpack_require__(16);
 
 class Menu extends React.Component {
@@ -21468,7 +21477,7 @@ module.exports = Menu;
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(3);
-var style = __webpack_require__(15);
+var style = __webpack_require__(10);
 var Info = __webpack_require__(16);
 
 class Menu extends React.Component {

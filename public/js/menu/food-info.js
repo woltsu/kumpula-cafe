@@ -1,4 +1,5 @@
 var React = require("react");
+var style = require("./style");
 
 class Info extends React.Component {
     constructor(props) {
@@ -55,10 +56,10 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         return (
-            <div>
+            <div style={{padding: "5px"}}>
                 <div id={this.props.index} onClick={this.handleClick} style={divStyle}>
                     <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
-                    <p id={infoId} style={{color: "#696969"}}>{this.props.info}</p>
+                    <p id={infoId} style={{ color: "#696969" }}>{this.props.info}</p>
                     <hr />
                 </div>
             </div>
