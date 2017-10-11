@@ -48,8 +48,7 @@ class Info extends React.Component {
         }
         var rotationStyle = {
             WebkitTransform: transform,
-            transition: "all 1s",
-            transitionTimingFunction: "linear",
+            transition: "all 0.5s",
             display: "inline-block"
         }
         var nameId = "name-" + this.props.index;
