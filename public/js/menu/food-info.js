@@ -58,7 +58,7 @@ class Info extends React.Component {
         return (
             <div>
                 <div id={this.props.index} onClick={this.handleClick} style={divStyle}>
-                    <div style={{marginBottom: "5%"}}>
+                    <div style={{marginBottom: "8%"}}>
                         <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
                     </div>
                     <p id={infoId} style={{ color: "#696969" }}>{this.props.info}</p>

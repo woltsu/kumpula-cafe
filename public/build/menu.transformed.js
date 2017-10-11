@@ -1047,7 +1047,7 @@ class Info extends React.Component {
                 { id: this.props.index, onClick: this.handleClick, style: divStyle },
                 React.createElement(
                     "div",
-                    { style: { marginBottom: "5%" } },
+                    { style: { marginBottom: "8%" } },
                     React.createElement(
                         "p",
                         { id: nameId },
