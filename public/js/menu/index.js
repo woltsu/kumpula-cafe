@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var WeeklyMenu = require("./menu");
-var DailyMenu = require("../daily-menu/menu");
+var WeeklyMenu = require("./weekly-menu");
+var DailyMenu = require("./daily-menu");
 var dateTool = require("../../../utils/dateTool");
 var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
 var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
@@ -58,7 +58,7 @@ class Index extends React.Component {
         }
         return (
             <div >
-                <div style={{ position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)"}}>
+                <div style={{ position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)", zIndex: "1"}}>
                     <h1>{ restaurant }</h1>
                 </div>
                 <div class="container">
@@ -68,13 +68,13 @@ class Index extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ position: "fixed", bottom: "10px", right: "10px", display: buttonDisplay }} class="text-center" >
+                <div style={{ position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }} class="text-center" >
                     <button class="btn btn-primary" onClick={this.changeMenu} >
                         {otherRestaurant}
                     </button>
                     <br />
                 </div>
-                <div style={{ position: "fixed", bottom: "10px", left: "10px" }} class="text-center" >
+                <div style={{ position: "fixed", bottom: "10px", left: "15px" }} class="text-center" >
                     <button class="btn btn-primary" onClick={this.showDaily} style={{}} >
                         {buttonTextValue}
                     </button>

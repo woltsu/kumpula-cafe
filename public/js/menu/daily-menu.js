@@ -1,4 +1,5 @@
 var React = require("react");
+var style = require("./style");
 
 class Menu extends React.Component {
     constructor(props) {
@@ -29,24 +30,24 @@ class Menu extends React.Component {
     render() {
         return (
             <div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="text-center">
+                <div class="row justify-content-center">
+                    <div class="col-7">
+                        <div class="text-center" style={style.box}>
                             <h1>{this.props.date}</h1>
                         </div>
                     </div>
                 </div>
-                <hr />
                 <div class="row">
                     {this.state.menu.map(function (menu, menuIndex) {
                         return (
-                            <div class="col-md-6 col-xs-12">
+                            <div class="col-md-5 col-xs-12" style={style.box}>
                                 <div class="text-center">
-                                    <h1>{menu.menu.restaurant}</h1>
+                                    <h2>{menu.menu.restaurant}</h2>
+                                    <hr />
                                     {Object.keys(menu.menu.food).map(function (price, priceIndex) {
                                         return (
                                             <div>
-                                                <b>{price}:</b>
+                                                <h5><b>{price}:</b></h5>
                                                 {menu.menu.food[price].map(function (food, foodIndex) {
                                                     return <p key={foodIndex}>- { food }</p>
                                                 })}

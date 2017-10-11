@@ -1,4 +1,5 @@
 var React = require("react");
+var style = require("./style");
 
 class Menu extends React.Component {
     constructor(props) {
@@ -45,9 +46,9 @@ class Menu extends React.Component {
             <div key={this.props.key} style={{ marginTop: "70px" }}>
                 {Object.keys(food).map(function (date, dateIndex) {
                     return (
-                        <div>
-                            <hr />
+                        <div style={style.box}>
                             <h3>{ date }</h3>
+                            <hr />
                             {Object.keys(food[date]).map(function (price, priceIndex) {
                                 return (
                                     <div>

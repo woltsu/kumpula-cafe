@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -360,6 +360,21 @@ module.exports = invariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(17);
+} else {
+  module.exports = __webpack_require__(18);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -451,21 +466,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(15);
-} else {
-  module.exports = __webpack_require__(16);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 5 */
@@ -853,7 +853,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(19);
+var isTextNode = __webpack_require__(21);
 
 /*eslint-disable no-bitwise */
 
@@ -954,6 +954,134 @@ module.exports = getActiveElement;
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    box: {
+        boxSizing: "border-box",
+        padding: "10px",
+        marginTop: "2%",
+        marginBottom: "4%",
+        marginLeft: "4%",
+        marginRight: "4%",
+        backgroundColor: "white",
+        boxShadow: "0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)"
+    }
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(19);
+var WeeklyMenu = __webpack_require__(33);
+var DailyMenu = __webpack_require__(34);
+var dateTool = __webpack_require__(35);
+var exactumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/11/";
+var chemicumURL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10/";
+
+class Index extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showExactum: true,
+            showDaily: true
+        };
+        this.changeMenu = this.changeMenu.bind(this);
+        this.showDaily = this.showDaily.bind(this);
+    }
+
+    changeMenu() {
+        var newState = !this.state.showExactum;
+        this.setState({
+            showExactum: newState
+        });
+    }
+
+    showDaily() {
+        var newState = !this.state.showDaily;
+        this.setState({
+            showDaily: newState
+        });
+    }
+
+    render() {
+        let restaurant;
+        let otherRestaurant;
+        var today = dateTool.today();
+        let menu;
+        let buttonDisplay;
+        let buttonTextValue;
+        if (this.state.showDaily) {
+            menu = React.createElement(DailyMenu, { date: today });
+            buttonDisplay = "none";
+            buttonTextValue = "Weekly";
+        } else {
+            buttonDisplay = "block";
+            buttonTextValue = "Daily";
+            if (this.state.showExactum) {
+                restaurant = "Exactum";
+                otherRestaurant = "Chemicum";
+                menu = React.createElement(WeeklyMenu, { restaurant: exactumURL, key: "1" });
+            } else {
+                restaurant = "Chemicum";
+                otherRestaurant = "Exactum";
+                menu = React.createElement(WeeklyMenu, { restaurant: chemicumURL, key: "2" });
+            }
+        }
+        return React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "div",
+                { style: { position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)", zIndex: "1" } },
+                React.createElement(
+                    "h1",
+                    null,
+                    restaurant
+                )
+            ),
+            React.createElement(
+                "div",
+                { "class": "container" },
+                React.createElement(
+                    "div",
+                    { "class": "row text-center" },
+                    React.createElement(
+                        "div",
+                        { "class": "col-12" },
+                        menu
+                    )
+                )
+            ),
+            React.createElement(
+                "div",
+                { style: { position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }, "class": "text-center" },
+                React.createElement(
+                    "button",
+                    { "class": "btn btn-primary", onClick: this.changeMenu },
+                    otherRestaurant
+                ),
+                React.createElement("br", null)
+            ),
+            React.createElement(
+                "div",
+                { style: { position: "fixed", bottom: "10px", left: "15px" }, "class": "text-center" },
+                React.createElement(
+                    "button",
+                    { "class": "btn btn-primary", onClick: this.showDaily, style: {} },
+                    buttonTextValue
+                )
+            )
+        );
+    }
+}
+
+ReactDOM.render(React.createElement(Index, null), document.getElementById("app"));
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -966,7 +1094,7 @@ module.exports = getActiveElement;
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(3),p=__webpack_require__(5);__webpack_require__(2);var r=__webpack_require__(1);
+var f=__webpack_require__(4),p=__webpack_require__(5);__webpack_require__(2);var r=__webpack_require__(1);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -983,7 +1111,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1003,7 +1131,7 @@ if (process.env.NODE_ENV !== "production") {
 
 'use strict';
 
-var objectAssign$1 = __webpack_require__(3);
+var objectAssign$1 = __webpack_require__(4);
 var require$$0 = __webpack_require__(6);
 var emptyObject = __webpack_require__(5);
 var invariant = __webpack_require__(2);
@@ -2689,7 +2817,7 @@ module.exports = ReactEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2727,15 +2855,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(18);
+  module.exports = __webpack_require__(20);
 } else {
-  module.exports = __webpack_require__(21);
+  module.exports = __webpack_require__(23);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2749,7 +2877,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(4);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(3),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
+var aa=__webpack_require__(3);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(4),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -2998,7 +3126,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3013,7 +3141,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
  * @typechecks
  */
 
-var isNode = __webpack_require__(20);
+var isNode = __webpack_require__(22);
 
 /**
  * @param {*} object The object to check.
@@ -3026,7 +3154,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3054,7 +3182,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3074,17 +3202,17 @@ if (process.env.NODE_ENV !== "production") {
 
 'use strict';
 
-var react = __webpack_require__(4);
+var react = __webpack_require__(3);
 var invariant = __webpack_require__(2);
 var ExecutionEnvironment = __webpack_require__(9);
-var _assign = __webpack_require__(3);
+var _assign = __webpack_require__(4);
 var EventListener = __webpack_require__(10);
 var require$$0 = __webpack_require__(6);
-var hyphenateStyleName = __webpack_require__(22);
+var hyphenateStyleName = __webpack_require__(24);
 var emptyFunction = __webpack_require__(1);
-var camelizeStyleName = __webpack_require__(24);
-var performanceNow = __webpack_require__(26);
-var propTypes = __webpack_require__(28);
+var camelizeStyleName = __webpack_require__(26);
+var performanceNow = __webpack_require__(28);
+var propTypes = __webpack_require__(30);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(7);
 var shallowEqual = __webpack_require__(11);
@@ -20283,7 +20411,7 @@ module.exports = ReactDOMFiberEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20298,7 +20426,7 @@ module.exports = ReactDOMFiberEntry;
 
 
 
-var hyphenate = __webpack_require__(23);
+var hyphenate = __webpack_require__(25);
 
 var msPattern = /^ms-/;
 
@@ -20325,7 +20453,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20361,7 +20489,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20376,7 +20504,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(25);
+var camelize = __webpack_require__(27);
 
 var msPattern = /^-ms-/;
 
@@ -20404,7 +20532,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20439,7 +20567,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20454,7 +20582,7 @@ module.exports = camelize;
  * @typechecks
  */
 
-var performance = __webpack_require__(27);
+var performance = __webpack_require__(29);
 
 var performanceNow;
 
@@ -20476,7 +20604,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20502,7 +20630,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20527,17 +20655,17 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(29)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(31)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(30)();
+  module.exports = __webpack_require__(32)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20553,7 +20681,7 @@ if (process.env.NODE_ENV !== 'production') {
 var emptyFunction = __webpack_require__(1);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(6);
-var assign = __webpack_require__(3);
+var assign = __webpack_require__(4);
 
 var ReactPropTypesSecret = __webpack_require__(8);
 var checkPropTypes = __webpack_require__(7);
@@ -21087,7 +21215,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21152,10 +21280,101 @@ module.exports = function() {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(4);
+var React = __webpack_require__(3);
+var style = __webpack_require__(15);
+
+class Menu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            food: {}
+        };
+        this.getMenu = this.getMenu.bind(this);
+    }
+
+    componentDidMount() {
+        this.getMenu();
+    }
+
+    getMenu() {
+        $.ajax({
+            method: "get",
+            url: this.props.restaurant,
+            success: function (res) {
+                var menu = {};
+                for (var a = 0; a < res.data.length; a++) {
+                    for (var b = 0; b < res.data[a].data.length; b++) {
+                        var date = res.data[a].date;
+                        if (!(date in menu)) {
+                            menu[date] = {};
+                        }
+                        var price = res.data[a].data[b].price.name;
+                        if (!(price in menu[date])) {
+                            menu[date][price] = [];
+                        }
+                        menu[date][price].push(res.data[a].data[b].name);
+                    }
+                }
+                this.setState({
+                    food: menu
+                });
+            }.bind(this)
+        });
+    }
+
+    render() {
+        var food = this.state.food;
+        return React.createElement(
+            "div",
+            { key: this.props.key, style: { marginTop: "70px" } },
+            Object.keys(food).map(function (date, dateIndex) {
+                return React.createElement(
+                    "div",
+                    { style: style.box },
+                    React.createElement(
+                        "h3",
+                        null,
+                        date
+                    ),
+                    React.createElement("hr", null),
+                    Object.keys(food[date]).map(function (price, priceIndex) {
+                        return React.createElement(
+                            "div",
+                            null,
+                            React.createElement(
+                                "b",
+                                null,
+                                price,
+                                ":"
+                            ),
+                            food[date][price].map(function (food, foodIndex) {
+                                return React.createElement(
+                                    "p",
+                                    { key: foodIndex },
+                                    "- ",
+                                    food
+                                );
+                            }),
+                            React.createElement("br", null)
+                        );
+                    })
+                );
+            })
+        );
+    }
+}
+
+module.exports = Menu;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(3);
+var style = __webpack_require__(15);
 
 class Menu extends React.Component {
     constructor(props) {
@@ -21189,13 +21408,13 @@ class Menu extends React.Component {
             null,
             React.createElement(
                 "div",
-                { "class": "row" },
+                { "class": "row justify-content-center" },
                 React.createElement(
                     "div",
-                    { "class": "col-12" },
+                    { "class": "col-7" },
                     React.createElement(
                         "div",
-                        { "class": "text-center" },
+                        { "class": "text-center", style: style.box },
                         React.createElement(
                             "h1",
                             null,
@@ -21204,31 +21423,35 @@ class Menu extends React.Component {
                     )
                 )
             ),
-            React.createElement("hr", null),
             React.createElement(
                 "div",
                 { "class": "row" },
                 this.state.menu.map(function (menu, menuIndex) {
                     return React.createElement(
                         "div",
-                        { "class": "col-md-6 col-xs-12" },
+                        { "class": "col-md-5 col-xs-12", style: style.box },
                         React.createElement(
                             "div",
                             { "class": "text-center" },
                             React.createElement(
-                                "h1",
+                                "h2",
                                 null,
                                 menu.menu.restaurant
                             ),
+                            React.createElement("hr", null),
                             Object.keys(menu.menu.food).map(function (price, priceIndex) {
                                 return React.createElement(
                                     "div",
                                     null,
                                     React.createElement(
-                                        "b",
+                                        "h5",
                                         null,
-                                        price,
-                                        ":"
+                                        React.createElement(
+                                            "b",
+                                            null,
+                                            price,
+                                            ":"
+                                        )
                                     ),
                                     menu.menu.food[price].map(function (food, foodIndex) {
                                         return React.createElement(
@@ -21252,7 +21475,7 @@ class Menu extends React.Component {
 module.exports = Menu;
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports) {
 
 function getDateTime() {
@@ -21298,43 +21521,6 @@ module.exports = {
         return getDateTime();
     }
 };
-
-/***/ }),
-/* 33 */,
-/* 34 */,
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var React = __webpack_require__(4);
-var ReactDOM = __webpack_require__(17);
-var Menu = __webpack_require__(31);
-var dateTool = __webpack_require__(32);
-
-class DailyMenu extends React.Component {
-    render() {
-        var date = dateTool.today();
-        return React.createElement(
-            "div",
-            null,
-            React.createElement(
-                "div",
-                { "class": "row" },
-                React.createElement(
-                    "div",
-                    { "class": "col-12 text-center" },
-                    React.createElement(
-                        "h1",
-                        null,
-                        date
-                    )
-                )
-            ),
-            React.createElement(Menu, { date: date })
-        );
-    }
-}
-
-ReactDOM.render(React.createElement(DailyMenu, null), document.getElementById("app"));
 
 /***/ })
 /******/ ]);
