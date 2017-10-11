@@ -1037,9 +1037,13 @@ class Index extends React.Component {
                 "div",
                 { style: { position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)", zIndex: "1" } },
                 React.createElement(
-                    "h1",
+                    "h2",
                     null,
-                    restaurant
+                    React.createElement(
+                        "b",
+                        null,
+                        restaurant
+                    )
                 )
             ),
             React.createElement(
@@ -1060,7 +1064,7 @@ class Index extends React.Component {
                 { style: { position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }, "class": "text-center" },
                 React.createElement(
                     "button",
-                    { "class": "btn btn-primary", onClick: this.changeMenu },
+                    { "class": "btn btn-sample", onClick: this.changeMenu },
                     otherRestaurant
                 ),
                 React.createElement("br", null)
@@ -1070,7 +1074,7 @@ class Index extends React.Component {
                 { style: { position: "fixed", bottom: "10px", left: "15px" }, "class": "text-center" },
                 React.createElement(
                     "button",
-                    { "class": "btn btn-primary", onClick: this.showDaily, style: {} },
+                    { "class": "btn btn-sample", onClick: this.showDaily, style: {} },
                     buttonTextValue
                 )
             )

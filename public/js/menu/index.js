@@ -59,7 +59,7 @@ class Index extends React.Component {
         return (
             <div >
                 <div style={{ position: "fixed", top: "5px", left: "50%", transform: "translateX(-50%)", zIndex: "1"}}>
-                    <h1>{ restaurant }</h1>
+                    <h2><b>{ restaurant }</b></h2>
                 </div>
                 <div class="container">
                     <div class="row text-center" >
@@ -69,13 +69,13 @@ class Index extends React.Component {
                     </div>
                 </div>
                 <div style={{ position: "fixed", bottom: "10px", right: "15px", display: buttonDisplay }} class="text-center" >
-                    <button class="btn btn-primary" onClick={this.changeMenu} >
+                    <button class="btn btn-sample" onClick={this.changeMenu} >
                         {otherRestaurant}
                     </button>
                     <br />
                 </div>
                 <div style={{ position: "fixed", bottom: "10px", left: "15px" }} class="text-center" >
-                    <button class="btn btn-primary" onClick={this.showDaily} style={{}} >
+                    <button class="btn btn-sample" onClick={this.showDaily} style={{}} >
                         {buttonTextValue}
                     </button>
                 </div>
