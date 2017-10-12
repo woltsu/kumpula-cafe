@@ -10,7 +10,7 @@ module.exports = function (res) {
             if (!(price in menu[date])) {
                 menu[date][price] = [];
             }
-            var meta = res.data[a].data[b].meta[0].join() + " " + res.data[a].data[b].meta[1].join();
+            var meta = res.data[a].data[b].meta[0].join(", ") + " --- " + res.data[a].data[b].meta[1].join(", ");
             menu[date][price].push({
                 name: res.data[a].data[b].name,
                 info: res.data[a].data[b].nutrition,

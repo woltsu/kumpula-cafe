@@ -21427,7 +21427,7 @@ class Menu extends React.Component {
                             menu[date][price] = [];
                         }
                         var nutrition = res.data[a].data[b].nutrition;
-                        var meta = res.data[a].data[b].meta[0].join() + " " + res.data[a].data[b].meta[1].join();
+                        var meta = res.data[a].data[b].meta[0].join(", ") + " --- " + res.data[a].data[b].meta[1].join(", ");
                         menu[date][price].push({ name: res.data[a].data[b].name, info: nutrition, meta: meta });
                     }
                 }
