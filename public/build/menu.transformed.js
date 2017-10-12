@@ -692,7 +692,7 @@ module.exports = ExecutionEnvironment;
 module.exports = {
     box: {
         boxSizing: "border-box",
-        padding: "0px",
+        padding: "5px",
         marginTop: "2%",
         marginBottom: "4%",
         marginLeft: "4%",
@@ -1062,7 +1062,9 @@ class Info extends React.Component {
                     React.createElement(
                         "p",
                         { id: infoId, style: { color: "#696969" } },
-                        this.props.info
+                        this.props.info,
+                        React.createElement("br", null),
+                        this.props.meta
                     ),
                     React.createElement("hr", null)
                 )
@@ -21424,7 +21426,9 @@ class Menu extends React.Component {
                         if (!(price in menu[date])) {
                             menu[date][price] = [];
                         }
-                        menu[date][price].push({ name: res.data[a].data[b].name, info: res.data[a].data[b].nutrition });
+                        var nutrition = res.data[a].data[b].nutrition;
+                        var meta = res.data[a].data[b].meta[0].join() + " " + res.data[a].data[b].meta[1].join();
+                        menu[date][price].push({ name: res.data[a].data[b].name, info: nutrition, meta: meta });
                     }
                 }
                 this.setState({
@@ -21463,7 +21467,7 @@ class Menu extends React.Component {
                                 return React.createElement(
                                     "div",
                                     { style: { marginBottom: "2%" } },
-                                    React.createElement(Info, { text: food.name, info: food.info, index: foodIndex })
+                                    React.createElement(Info, { text: food.name, info: food.info, meta: food.meta, index: foodIndex })
                                 );
                             }),
                             React.createElement("br", null)
@@ -21566,7 +21570,7 @@ class Menu extends React.Component {
                                         return React.createElement(
                                             "div",
                                             { style: { marginBottom: "2%" } },
-                                            React.createElement(Info, { text: food.name, info: food.info, index: foodIndex })
+                                            React.createElement(Info, { text: food.name, info: food.info, meta: food.meta, index: foodIndex })
                                         );
                                     }),
                                     React.createElement("br", null)

@@ -52,7 +52,7 @@ class Menu extends React.Component {
                                                 {menu.menu.food[price].map(function (food, foodIndex) {
                                                     return (
                                                         <div style={{marginBottom: "2%"}}>
-                                                            <Info text={food.name} info={food.info} index={foodIndex} />
+                                                            <Info text={food.name} info={food.info} meta={food.meta} index={foodIndex} />
                                                         </div>
                                                     );
                                                 })}

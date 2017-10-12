@@ -31,7 +31,9 @@ class Menu extends React.Component {
                         if (!(price in menu[date])) {
                             menu[date][price] = [];
                         }
-                        menu[date][price].push({ name: res.data[a].data[b].name, info: res.data[a].data[b].nutrition });
+                        var nutrition = res.data[a].data[b].nutrition
+                        var meta = res.data[a].data[b].meta[0].join() + " " + res.data[a].data[b].meta[1].join();
+                        menu[date][price].push({ name: res.data[a].data[b].name, info: nutrition, meta: meta});
                     }
                 }
                 this.setState({
@@ -57,7 +59,7 @@ class Menu extends React.Component {
                                         {food[date][price].map(function (food, foodIndex) {
                                             return (
                                                 <div style={{ marginBottom: "2%" }}>
-                                                    <Info text={food.name} info={food.info} index={foodIndex} />
+                                                    <Info text={food.name} info={food.info} meta={food.meta} index={foodIndex} />
                                                 </div>
                                             );
                                         })}
