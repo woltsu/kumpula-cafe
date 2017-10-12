@@ -692,7 +692,7 @@ module.exports = ExecutionEnvironment;
 module.exports = {
     box: {
         boxSizing: "border-box",
-        padding: "10px",
+        padding: "0px",
         marginTop: "2%",
         marginBottom: "4%",
         marginLeft: "4%",
@@ -998,13 +998,13 @@ class Info extends React.Component {
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
         var divHeight = document.getElementById(this.props.index).clientHeight;
-        var height = document.getElementById(nameId).clientHeight;
+        var nameHeight = document.getElementById(nameId).clientHeight;
         var expandedHeight = document.getElementById(infoId).clientHeight;
         if (expandedHeight != 0) {
             expandedHeight = divHeight;
         }
         this.setState({
-            height: height,
+            height: 0,
             expandedHeight: expandedHeight
         });
     }
@@ -1044,28 +1044,28 @@ class Info extends React.Component {
             null,
             React.createElement(
                 "div",
-                { id: this.props.index, onClick: this.handleClick, style: divStyle },
-                React.createElement(
-                    "div",
-                    { style: { marginBottom: "8%" } },
-                    React.createElement(
-                        "p",
-                        { id: nameId },
-                        React.createElement(
-                            "a",
-                            { style: rotationStyle },
-                            ">"
-                        ),
-                        " ",
-                        this.props.text
-                    )
-                ),
+                { onClick: this.handleClick, style: { cursor: "pointer" } },
                 React.createElement(
                     "p",
-                    { id: infoId, style: { color: "#696969" } },
-                    this.props.info
+                    { id: nameId },
+                    React.createElement(
+                        "a",
+                        { style: rotationStyle },
+                        ">"
+                    ),
+                    " ",
+                    this.props.text
                 ),
-                React.createElement("hr", null)
+                React.createElement(
+                    "div",
+                    { id: this.props.index, style: divStyle },
+                    React.createElement(
+                        "p",
+                        { id: infoId, style: { color: "#696969" } },
+                        this.props.info
+                    ),
+                    React.createElement("hr", null)
+                )
             )
         );
     }
