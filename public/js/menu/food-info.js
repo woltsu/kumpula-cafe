@@ -16,9 +16,6 @@ class Info extends React.Component {
         var divHeight = document.getElementById(this.props.index).clientHeight;
         var nameHeight = document.getElementById(nameId).clientHeight;
         var expandedHeight = document.getElementById(infoId).clientHeight;
-        if (expandedHeight != 0) {
-            expandedHeight = divHeight + nameHeight;
-        }
         this.setState({
             height: 0,
             expandedHeight: expandedHeight
