@@ -18,14 +18,17 @@ module.exports = function (app) {
                         Menus.find({ "menu.date": req.params.date }, function (err, result) {
                             if (err) throw err;
 
+                            var arr = [];
+                            arr.push({
+                                menu: {
+                                    date: req.params.date,
+                                    food: {},
+                                    restaurant: "No food today"
+                                }
+                                
+                            });
                             if (result.length == 0) {
-                                res.send({
-                                    menu: {
-                                        date: req.params.date,
-                                        food: {},
-                                        restaurant: "No food"
-                                    }
-                                });
+                                res.send(arr);
                             } else {
                                 res.redirect("/api/menu/" + req.params.date);
                             }
