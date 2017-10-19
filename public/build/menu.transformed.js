@@ -21436,11 +21436,11 @@ class Menu extends React.Component {
         var food = this.state.food;
         return React.createElement(
             "div",
-            { key: this.props.key, style: { marginTop: "70px" } },
+            { "class": "row justify-content-center", key: this.props.key, style: { marginTop: "70px" } },
             Object.keys(food).map(function (date, dateIndex) {
                 return React.createElement(
                     "div",
-                    { style: style.box },
+                    { "class": "col-md-8 col-xs-10", style: style.box },
                     React.createElement(
                         "h3",
                         null,
@@ -21532,7 +21532,7 @@ class Menu extends React.Component {
             ),
             React.createElement(
                 "div",
-                { "class": "row" },
+                { "class": "row justify-content-center" },
                 this.state.menu.map(function (menu, menuIndex) {
                     return React.createElement(
                         "div",

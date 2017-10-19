@@ -46,10 +46,10 @@ class Menu extends React.Component {
     render() {
         var food = this.state.food;
         return (
-            <div key={this.props.key} style={{ marginTop: "70px" }}>
+            <div class="row justify-content-center" key={this.props.key} style={{ marginTop: "70px" }}>
                 {Object.keys(food).map(function (date, dateIndex) {
                     return (
-                        <div style={style.box}>
+                        <div class="col-md-8 col-xs-10" style={style.box}>
                             <h3>{ date }</h3>
                             <hr />
                             {Object.keys(food[date]).map(function (price, priceIndex) {

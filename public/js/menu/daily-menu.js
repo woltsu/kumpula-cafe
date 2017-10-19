@@ -38,7 +38,7 @@ class Menu extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                     {this.state.menu.map(function (menu, menuIndex) {
                         return (
                             <div class="col-md-5 col-xs-12" style={style.box}>
