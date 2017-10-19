@@ -34,7 +34,7 @@ class Info extends React.Component {
         var height = this.state.height + "px";
         var divStyle = {
             height: height,
-            transition: "height 1s",
+            transition: "height 0.5s",
             overflow: "hidden",
             cursor: "pointer"
         }
@@ -44,7 +44,7 @@ class Info extends React.Component {
         }
         var rotationStyle = {
             WebkitTransform: transform,
-            transition: "all 0.5s",
+            transition: "all 0.4s",
             display: "inline-block"
         }
         var nameId = "name-" + this.props.index;
