@@ -995,8 +995,8 @@ class Info extends React.Component {
     }
 
     componentDidMount() {
-        var infoId = "info-" + this.props.index;
-        var expandedHeight = document.getElementById(infoId).clientHeight;
+        var expandedId = "expanded-" + this.props.index;
+        var expandedHeight = document.getElementById(expandedId).clientHeight;
         this.setState({
             height: 0,
             expandedHeight: expandedHeight
@@ -1033,15 +1033,16 @@ class Info extends React.Component {
         };
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
+        var hiddenTextid = "expanded-" + this.props.index;
         return React.createElement(
             "div",
             null,
             React.createElement(
                 "div",
-                { onClick: this.handleClick, style: { cursor: "pointer" } },
+                { onClick: this.handleClick },
                 React.createElement(
                     "p",
-                    { id: nameId },
+                    { style: { cursor: "pointer" }, id: nameId },
                     React.createElement(
                         "a",
                         { style: rotationStyle },
@@ -1052,7 +1053,7 @@ class Info extends React.Component {
                 ),
                 React.createElement(
                     "div",
-                    { id: this.props.index, style: divStyle },
+                    { id: hiddenTextid, style: divStyle },
                     React.createElement(
                         "p",
                         { id: infoId, style: { color: "#696969" } },

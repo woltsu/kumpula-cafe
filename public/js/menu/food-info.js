@@ -11,8 +11,8 @@ class Info extends React.Component {
     }
 
     componentDidMount() {
-        var infoId = "info-" + this.props.index;
-        var expandedHeight = document.getElementById(infoId).clientHeight;
+        var expandedId = "expanded-" + this.props.index;
+        var expandedHeight = document.getElementById(expandedId).clientHeight;
         this.setState({
             height: 0,
             expandedHeight: expandedHeight
@@ -49,11 +49,12 @@ class Info extends React.Component {
         }
         var nameId = "name-" + this.props.index;
         var infoId = "info-" + this.props.index;
+        var hiddenTextid = "expanded-" + this.props.index;
         return (
             <div>
-                <div onClick={this.handleClick} style={{ cursor: "pointer" }} >
-                    <p id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
-                    <div id={this.props.index} style={divStyle}>
+                <div onClick={this.handleClick}>
+                    <p style={{cursor: "pointer"}} id={nameId}><a style={rotationStyle}>></a> {this.props.text}</p>
+                    <div id={hiddenTextid} style={divStyle}>
                         <p id={infoId} style={{ color: "#696969" }}>
                             {this.props.info}
                             <br />
